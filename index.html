@@ -59,11 +59,17 @@
             <div class="bg-white p-6 shadow-2xl border-4 border-green-border rounded-lg flex flex-col gap-4">
                 
                 <!-- Top Row -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 h-32">
-                    <!-- Title/Meta -->
-                    <div class="lg:col-span-3 border-2 border-green-border p-3 flex flex-col justify-center items-center bg-green-header text-white rounded">
-                        <h1 class="text-2xl font-bold tracking-widest uppercase mb-1">TASK TRACKER</h1>
-                        <div class="text-sm font-medium" id="tkWeekLabel">Jan 22-28</div>
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 h-36">
+                    <!-- Title/Meta + Clock + Week Nav -->
+                    <div class="lg:col-span-3 border-2 border-green-border p-3 flex flex-col justify-center items-center bg-green-header text-white rounded gap-1">
+                        <h1 class="text-xl font-bold tracking-widest uppercase">TASK TRACKER</h1>
+                        <div id="tkLiveClock" class="font-mono text-2xl font-bold tracking-widest"></div>
+                        <div id="tkLiveDate" class="text-xs font-medium opacity-90 uppercase tracking-wide"></div>
+                        <div class="flex items-center gap-2 mt-1">
+                            <button id="tkPrevWeek" class="w-6 h-6 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/40 transition-colors font-bold text-sm">‹</button>
+                            <div class="text-xs font-semibold" id="tkWeekLabel">Week</div>
+                            <button id="tkNextWeek" class="w-6 h-6 flex items-center justify-center rounded-full bg-white/20 hover:bg-white/40 transition-colors font-bold text-sm">›</button>
+                        </div>
                     </div>
 
                     <!-- Weekly Chart -->
