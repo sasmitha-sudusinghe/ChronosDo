@@ -24,7 +24,7 @@ function formatWeekLabel(offset) {
     const mon = getMondayOfWeek(offset);
     const sun = new Date(mon);
     sun.setDate(mon.getDate() + 6);
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const fmt = d => `${months[d.getMonth()]} ${d.getDate()}`;
     return `${fmt(mon)} – ${fmt(sun)}`;
 }
@@ -64,14 +64,14 @@ function updateClock() {
     const hh = String(now.getHours()).padStart(2, '0');
     const mm = String(now.getMinutes()).padStart(2, '0');
     const ss = String(now.getSeconds()).padStart(2, '0');
-    const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const dateStr = `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()} ${now.getFullYear()}`;
 
     const clockEl = document.getElementById('tkLiveClock');
-    const dateEl  = document.getElementById('tkLiveDate');
+    const dateEl = document.getElementById('tkLiveDate');
     if (clockEl) clockEl.textContent = `${hh}:${mm}:${ss}`;
-    if (dateEl)  dateEl.textContent  = dateStr;
+    if (dateEl) dateEl.textContent = dateStr;
 }
 
 
@@ -92,10 +92,10 @@ function updateQuote() {
 // --- TASK TRACKER LOGIC ---
 
 const tkColumnsContainer = document.getElementById('tkColumnsContainer');
-const tkRingsContainer   = document.getElementById('tkRingsContainer');
-const tkReflection       = document.getElementById('tkReflection');
+const tkRingsContainer = document.getElementById('tkRingsContainer');
+const tkReflection = document.getElementById('tkReflection');
 let tkWeeklyChart = null;
-let tkRingCharts  = [];
+let tkRingCharts = [];
 
 function initTaskCharts() {
     Chart.defaults.font.family = "'DM Sans', sans-serif";
@@ -123,7 +123,7 @@ function renderTaskTracker() {
     document.getElementById('tkWeekLabel').textContent = formatWeekLabel(weekOffset);
 
     tkColumnsContainer.innerHTML = '';
-    tkRingsContainer.innerHTML   = '';
+    tkRingsContainer.innerHTML = '';
     tkRingCharts.forEach(c => c.destroy());
     tkRingCharts = [];
 
@@ -131,10 +131,10 @@ function renderTaskTracker() {
     const dailyData = [];
 
     daysOfWeek.forEach((day, dayIndex) => {
-        const tasks       = board[day] || [];
-        const dayTotal    = tasks.length;
+        const tasks = board[day] || [];
+        const dayTotal = tasks.length;
         const dayCompleted = tasks.filter(t => t.completed).length;
-        totalTasks    += dayTotal;
+        totalTasks += dayTotal;
         completedTasks += dayCompleted;
         dailyData.push(dayCompleted);
 
@@ -142,7 +142,7 @@ function renderTaskTracker() {
 
         // Actual calendar date for this column
         const colDate = getDateForDay(dayIndex, weekOffset);
-        const months  = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
         const dateLabel = `${months[colDate.getMonth()]} ${colDate.getDate()}`;
 
         // Highlight today
@@ -206,7 +206,7 @@ function renderTaskTracker() {
 
     const weeklyRate = totalTasks > 0 ? Math.round((completedTasks / totalTasks) * 100) : 0;
     document.getElementById('tkWeeklyRateText').textContent = weeklyRate + '%';
-    document.getElementById('tkWeeklyRateBar').style.width  = weeklyRate + '%';
+    document.getElementById('tkWeeklyRateBar').style.width = weeklyRate + '%';
 
     if (tkWeeklyChart) {
         tkWeeklyChart.data.datasets[0].data = dailyData;
