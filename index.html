@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChronosDo - Dashboard</title>
+    <title>ChronosDo - Task Tracker</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,16 +17,8 @@
             theme: {
                 extend: {
                     colors: {
-                        beige: {
-                            bg: '#dfdcd6', /* Outer background */
-                            card: '#e8e6e1', /* Inner card background */
-                            border: '#7a7065',
-                            text: '#4a433d',
-                            accent: '#655a50',
-                            highlight: '#d5b99a'
-                        },
                         green: {
-                            bg: '#d2dfd2', /* Outer background */
+                            bg: '#d2dfd2',
                             card: '#ffffff',
                             border: '#78a678',
                             header: '#8bbd8b',
@@ -52,110 +44,18 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body id="appBody" class="bg-beige-bg text-beige-text transition-colors duration-300 min-h-screen flex flex-col font-sans">
+<body id="appBody" class="bg-green-bg text-green-text transition-colors duration-300 min-h-screen flex flex-col font-sans">
 
     <!-- GLOBAL QUOTE BANNER -->
     <div id="quoteBanner" class="w-full bg-[#1a1a1a] text-[#f0f0f0] text-center py-2 font-mono font-bold tracking-widest uppercase text-sm shadow-md z-50">
         LOADING DISCIPLINE...
     </div>
 
-    <!-- VIEW TOGGLE -->
-    <div class="fixed top-12 right-6 z-40 bg-white shadow-lg rounded-full flex overflow-hidden border border-gray-300">
-        <button id="btnHabitView" class="px-4 py-2 text-sm font-bold bg-beige-card text-beige-text transition-colors">Habit Tracker</button>
-        <button id="btnTaskView" class="px-4 py-2 text-sm font-bold bg-white text-gray-500 hover:bg-green-light transition-colors">Task Tracker</button>
-    </div>
-
     <!-- MAIN CONTAINER -->
     <div class="max-w-[1400px] w-full mx-auto p-4 sm:p-6 lg:p-8 flex-1">
         
-        <!-- ================= HABIT TRACKER VIEW (BEIGE) ================= -->
-        <div id="habitView" class="w-full animate-fade-in">
-            <div class="bg-beige-card p-6 shadow-2xl border-4 border-[#3a3530] rounded-sm flex flex-col gap-6">
-                
-                <!-- Top Dashboard Row -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-                    <!-- Title/Meta -->
-                    <div class="lg:col-span-3 border-2 border-beige-border p-3 flex flex-col">
-                        <h1 class="text-2xl font-bold tracking-widest uppercase mb-2 border-b-2 border-beige-border pb-1">HABIT TRACKER</h1>
-                        <div class="text-sm font-bold mt-1">CALENDAR METRICS</div>
-                        <div class="grid grid-cols-2 gap-2 mt-2 text-xs">
-                            <div class="font-bold">MONTH</div>
-                            <div class="text-right" id="hbMonth">SEP 2026</div>
-                            <div class="font-bold">YEAR</div>
-                            <div class="text-right">2026</div>
-                        </div>
-                    </div>
-
-                    <!-- Daily Progress Bar Chart -->
-                    <div class="lg:col-span-5 border-2 border-beige-border p-3 relative h-32">
-                        <div class="text-xs font-bold absolute top-2 left-2 z-10 flex items-center gap-1"><i data-lucide="bar-chart-2" class="w-3 h-3"></i> Daily Progress</div>
-                        <canvas id="hbDailyChart"></canvas>
-                    </div>
-
-                    <!-- Weekly Progress Bar Chart -->
-                    <div class="lg:col-span-2 border-2 border-beige-border p-3 relative h-32">
-                        <div class="text-xs font-bold absolute top-2 left-2 z-10 flex items-center gap-1"><i data-lucide="activity" class="w-3 h-3"></i> Weekly Progress</div>
-                        <canvas id="hbWeeklyChart"></canvas>
-                    </div>
-
-                    <!-- Overall Score -->
-                    <div class="lg:col-span-2 border-2 border-beige-border p-3 flex flex-col items-center justify-center bg-[#e0ddd5]">
-                        <div class="text-xs font-bold uppercase mb-2 w-full text-center border-b border-beige-border pb-1">Overall Score</div>
-                        <div class="relative w-16 h-16">
-                            <canvas id="hbOverallChart"></canvas>
-                            <div class="absolute inset-0 flex items-center justify-center font-bold text-lg" id="hbOverallText">0%</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Middle Matrix Grid -->
-                <div class="border-2 border-beige-border flex flex-col bg-[#dfdcd6] overflow-x-auto">
-                    <!-- Headers -->
-                    <div class="grid grid-cols-[200px_repeat(31,minmax(24px,1fr))_120px] text-xs font-bold border-b-2 border-beige-border">
-                        <div class="p-2 border-r-2 border-beige-border bg-[#d5b99a] flex items-center justify-center uppercase tracking-widest text-center">My Habits</div>
-                        <!-- Day Numbers 1-31 -->
-                        <div class="col-span-31 grid grid-cols-31 bg-[#dfdcd6]" id="hbGridHeader">
-                            <!-- Injected by JS -->
-                        </div>
-                        <div class="p-2 border-l-2 border-beige-border bg-[#d5b99a] text-center uppercase">Analysis</div>
-                    </div>
-
-                    <!-- Habit Rows -->
-                    <div id="hbGridBody" class="flex flex-col text-sm bg-beige-card">
-                        <!-- Rows Injected by JS -->
-                    </div>
-
-                    <!-- Add Habit Input Row -->
-                    <div class="grid grid-cols-[200px_1fr] border-t-2 border-beige-border bg-beige-bg">
-                        <div class="p-0 border-r-2 border-beige-border">
-                            <input type="text" id="newHabitInput" placeholder="Add Habit..." class="w-full h-full p-2 bg-transparent outline-none font-bold text-sm uppercase placeholder-beige-border text-center">
-                        </div>
-                        <div class="p-2 text-xs text-beige-border flex items-center justify-center font-mono">Press Enter to Add</div>
-                    </div>
-                </div>
-
-                <!-- Bottom Analysis Row -->
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
-                    <!-- Line Chart -->
-                    <div class="lg:col-span-3 border-2 border-beige-border p-3 h-48 relative bg-beige-card">
-                        <div class="text-xs font-bold absolute top-2 left-2 z-10 w-full text-center uppercase tracking-widest">Success Rate</div>
-                        <canvas id="hbLineChart"></canvas>
-                    </div>
-                    <!-- Totals -->
-                    <div class="lg:col-span-1 border-2 border-beige-border p-3 text-xs bg-[#dfdcd6]">
-                        <div class="font-bold border-b border-beige-border pb-1 mb-2 text-center uppercase">YTD Totals & KPIs</div>
-                        <div class="space-y-1 font-mono text-[10px]" id="hbKpiList">
-                            <!-- Injected by JS -->
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
         <!-- ================= TASK TRACKER VIEW (GREEN) ================= -->
-        <div id="taskView" class="w-full hidden animate-fade-in">
+        <div id="taskView" class="w-full animate-fade-in">
             <div class="bg-white p-6 shadow-2xl border-4 border-green-border rounded-lg flex flex-col gap-4">
                 
                 <!-- Top Row -->
@@ -167,9 +67,9 @@
                     </div>
 
                     <!-- Weekly Chart -->
-                    <div class="lg:col-span-6 border-2 border-green-border p-2 relative rounded flex flex-col">
+                    <div class="lg:col-span-6 border-2 border-green-border p-2 relative rounded flex flex-col overflow-hidden">
                         <div class="text-xs font-bold text-center text-green-text uppercase bg-green-light rounded py-1 mb-1">Weekly Productivity</div>
-                        <div class="flex-1 relative w-full">
+                        <div class="flex-1 relative w-full min-h-0">
                             <canvas id="tkWeeklyChart"></canvas>
                         </div>
                     </div>
@@ -177,16 +77,15 @@
                     <!-- Weekly Stats -->
                     <div class="lg:col-span-3 border-2 border-green-border p-3 rounded flex flex-col justify-center items-center bg-green-light text-green-text relative">
                         <div class="text-xs font-bold uppercase w-full text-center bg-green-header text-white absolute top-0 left-0 py-1 rounded-t">Weekly Productivity Rate</div>
-                        <div class="text-4xl font-bold mt-4" id="tkWeeklyRateText">88%</div>
+                        <div class="text-4xl font-bold mt-4" id="tkWeeklyRateText">0%</div>
                         <div class="w-full h-2 bg-green-200 mt-2 rounded-full overflow-hidden">
-                            <div class="h-full bg-green-500" id="tkWeeklyRateBar" style="width: 88%"></div>
+                            <div class="h-full bg-green-500" id="tkWeeklyRateBar" style="width: 0%"></div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Middle Columns (7 Days) -->
                 <div class="grid grid-cols-1 md:grid-cols-7 gap-2">
-                    <!-- Columns Injected by JS -->
                     <div id="tkColumnsContainer" class="col-span-1 md:col-span-7 grid grid-cols-1 md:grid-cols-7 gap-2"></div>
                 </div>
 
