@@ -1,9 +1,348 @@
 /* ============================================
-   CHRONOSDO – MODERN DARK THEME
+   CHRONOSDO – THEME SYSTEM (Dark + Light)
    ============================================ */
 
-/* -- Google Font fallback -- */
-body { font-family: 'Inter', sans-serif; }
+/* ── Dark Theme (default) ─────────────────── */
+:root, [data-theme="dark"] {
+    --bg-page:        #0a0a12;
+    --bg-card:        rgba(17,17,31,0.92);
+    --bg-inner:       rgba(24,24,46,0.75);
+    --bg-col:         #0f0f1e;
+    --bg-col-header:  linear-gradient(135deg,#1e1e38,#252545);
+    --bg-col-today:   linear-gradient(135deg,#2a2456,rgba(124,106,255,0.2));
+    --bg-footer:      rgba(10,10,18,0.6);
+    --bg-banner:      linear-gradient(90deg,#0a0a12 0%,#18182e 40%,#11111f 100%);
+    --bg-accent:      linear-gradient(135deg,#18182e 0%,#1e1e38 60%,#252545 100%);
+    --bg-progress:    #1e1e38;
+
+    --border:         #2e2e52;
+    --border-today:   rgba(124,106,255,0.65);
+    --border-accent:  rgba(124,106,255,0.4);
+
+    --text-primary:   #e2e8f0;
+    --text-secondary: #94a3b8;
+    --text-muted:     #6b6b9a;
+    --text-faint:     #3a3a6a;
+    --text-task:      #cbd5e1;
+    --text-task-done: #3a3a6a;
+    --text-banner:    #7c6aff;
+    --text-clock:     #a89dff;
+    --text-nav:       #a89dff;
+    --text-rate:      #a89dff;
+
+    --accent:         #7c6aff;
+    --accent-light:   #a89dff;
+    --accent-glow:    rgba(124,106,255,0.25);
+
+    --shadow-card:    0 0 0 1px rgba(124,106,255,0.08), 0 24px 64px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.04);
+    --shadow-accent:  0 0 24px rgba(124,106,255,0.18), inset 0 1px 0 rgba(168,157,255,0.1);
+    --shadow-today:   0 0 20px rgba(124,106,255,0.2);
+
+    --scrollbar:      #2e2e52;
+    --scrollbar-hov:  rgba(124,106,255,0.35);
+
+    --toggle-bg:      rgba(124,106,255,0.15);
+    --toggle-border:  rgba(124,106,255,0.35);
+    --toggle-icon:    #a89dff;
+
+    --chart-bar:      #7c6aff;
+    --chart-grid:     #2e2e52;
+    --chart-tick:     #6b6b9a;
+    --ring-filled:    #7c6aff;
+    --ring-empty:     #1e1e38;
+    --ring-today:     #7c6aff;
+}
+
+/* ── Light Theme ──────────────────────────── */
+[data-theme="light"] {
+    --bg-page:        #f1f0fb;
+    --bg-card:        rgba(255,255,255,0.9);
+    --bg-inner:       rgba(245,244,255,0.85);
+    --bg-col:         #ffffff;
+    --bg-col-header:  linear-gradient(135deg,#ede9ff,#e0dbff);
+    --bg-col-today:   linear-gradient(135deg,#d4cbff,rgba(124,106,255,0.25));
+    --bg-footer:      rgba(237,233,255,0.6);
+    --bg-banner:      linear-gradient(90deg,#ede9ff 0%,#f1eeff 50%,#e8e4ff 100%);
+    --bg-accent:      linear-gradient(135deg,#6c5ce7 0%,#7c6aff 60%,#9a8dff 100%);
+    --bg-progress:    #e0dbff;
+
+    --border:         #d5cfff;
+    --border-today:   rgba(124,106,255,0.8);
+    --border-accent:  rgba(124,106,255,0.3);
+
+    --text-primary:   #1e1b4b;
+    --text-secondary: #4c4580;
+    --text-muted:     #7c72c0;
+    --text-faint:     #b8b0e8;
+    --text-task:      #2d2a6e;
+    --text-task-done: #b8b0e8;
+    --text-banner:    #5b4fd4;
+    --text-clock:     #ffffff;
+    --text-nav:       #ffffff;
+    --text-rate:      #5b4fd4;
+
+    --accent:         #7c6aff;
+    --accent-light:   #5b4fd4;
+    --accent-glow:    rgba(124,106,255,0.15);
+
+    --shadow-card:    0 0 0 1px rgba(124,106,255,0.1), 0 20px 60px rgba(108,92,231,0.12), inset 0 1px 0 rgba(255,255,255,0.8);
+    --shadow-accent:  0 4px 24px rgba(108,92,231,0.35);
+    --shadow-today:   0 0 20px rgba(124,106,255,0.25);
+
+    --scrollbar:      #c5bfee;
+    --scrollbar-hov:  rgba(124,106,255,0.4);
+
+    --toggle-bg:      rgba(255,255,255,0.6);
+    --toggle-border:  rgba(124,106,255,0.4);
+    --toggle-icon:    #5b4fd4;
+
+    --chart-bar:      #7c6aff;
+    --chart-grid:     #e0dbff;
+    --chart-tick:     #7c72c0;
+    --ring-filled:    #7c6aff;
+    --ring-empty:     #e0dbff;
+    --ring-today:     #5b4fd4;
+}
+
+/* ── Smooth theme transition ─────────────── */
+*, *::before, *::after {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.2s ease, box-shadow 0.3s ease;
+}
+
+/* ── Base ─────────────────────────────────── */
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-page);
+    color: var(--text-primary);
+    min-height: 100vh;
+}
+
+/* ── Scrollbar ────────────────────────────── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--scrollbar); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-hov); }
+
+/* ── Animations ───────────────────────────── */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(124,106,255,0); }
+    50%       { box-shadow: var(--shadow-today); }
+}
+.animate-fade-in { animation: fadeIn 0.4s cubic-bezier(.22,1,.36,1) both; }
+
+/* ── Theme Toggle Button ─────────────────── */
+.theme-toggle {
+    position: fixed;
+    top: 10px;
+    right: 16px;
+    z-index: 100;
+    width: 36px; height: 36px;
+    border-radius: 999px;
+    border: 1px solid var(--toggle-border);
+    background: var(--toggle-bg);
+    color: var(--toggle-icon);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 2px 12px var(--accent-glow);
+    font-size: 16px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s;
+}
+.theme-toggle:hover {
+    transform: scale(1.12) rotate(15deg);
+    box-shadow: 0 0 16px var(--accent-glow);
+}
+
+/* ── Quote Banner ────────────────────────── */
+.quote-banner {
+    background: var(--bg-banner);
+    color: var(--text-banner);
+    border-bottom: 1px solid var(--border);
+    letter-spacing: 0.2em;
+    font-size: 11px;
+    padding: 6px 0;
+}
+
+/* ── Glass Card ──────────────────────────── */
+.glass-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: var(--shadow-card);
+}
+
+/* ── Glass Inner ─────────────────────────── */
+.glass-inner {
+    background: var(--bg-inner);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(8px);
+}
+
+/* ── Accent Card (title/clock) ───────────── */
+.accent-card {
+    background: var(--bg-accent);
+    border: 1px solid var(--border-accent);
+    box-shadow: var(--shadow-accent);
+    position: relative;
+    overflow: hidden;
+}
+.accent-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% -20%, rgba(255,255,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+.accent-card .clock-text  { color: var(--text-clock); }
+.accent-card .date-text   { color: rgba(255,255,255,0.6); }
+.accent-card .label-text  { color: rgba(255,255,255,0.5); }
+.accent-card .title-text  { color: #ffffff; }
+.accent-card .week-text   { color: rgba(255,255,255,0.85); }
+
+/* ── Nav Buttons ─────────────────────────── */
+.nav-btn {
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    font-size: 14px; font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.nav-btn:hover {
+    background: rgba(255,255,255,0.3);
+    box-shadow: 0 0 8px rgba(255,255,255,0.2);
+}
+
+/* ── Day Columns ─────────────────────────── */
+.day-col {
+    background: var(--bg-col);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    transition: border-color 0.25s, box-shadow 0.25s, background 0.3s;
+}
+.day-col:hover       { border-color: var(--accent); }
+.day-col.today       { border-color: var(--border-today); box-shadow: var(--shadow-today); animation: pulse-glow 3s ease-in-out infinite; }
+
+.day-col-header {
+    background: var(--bg-col-header);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 6px;
+    text-align: center;
+}
+.day-col.today .day-col-header { background: var(--bg-col-today); border-bottom-color: var(--border-today); }
+.day-col-header .day-name  { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-secondary); }
+.day-col-header .day-date  { font-size: 9px; color: var(--text-muted); margin-top: 2px; }
+.day-col.today .day-name   { color: var(--accent); }
+.day-col.today .day-date   { color: var(--accent-light); }
+
+.day-col-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 8px;
+    background: var(--bg-col);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.day-col-footer {
+    padding: 8px;
+    border-top: 1px solid var(--border);
+    background: var(--bg-footer);
+}
+.day-col-footer input {
+    width: 100%; background: transparent; outline: none;
+    font-size: 11px; color: var(--accent);
+    font-family: 'Inter', sans-serif;
+}
+.day-col-footer input::placeholder { color: var(--text-faint); }
+
+/* ── Task Items ──────────────────────────── */
+.task-item {
+    display: flex; align-items: flex-start; gap: 6px;
+    padding: 5px 6px; border-radius: 8px;
+    border: 1px solid transparent;
+    transition: background 0.15s, border-color 0.15s;
+}
+.task-item:hover {
+    background: var(--accent-glow);
+    border-color: rgba(124,106,255,0.25);
+}
+.task-delete-btn {
+    opacity: 0; color: #f87171; flex-shrink: 0;
+    margin-top: 2px; cursor: pointer;
+    transition: opacity 0.15s;
+    background: none; border: none; padding: 0;
+}
+.task-item:hover .task-delete-btn { opacity: 1; }
+
+.task-title {
+    flex: 1; font-size: 11px; font-weight: 500;
+    color: var(--text-task); line-height: 1.4;
+    outline: none;
+}
+.task-title.done { text-decoration: line-through; color: var(--text-task-done); }
+
+/* ── Checkbox ────────────────────────────── */
+.tk-checkbox {
+    appearance: none;
+    width: 15px; height: 15px;
+    border: 1.5px solid var(--text-faint);
+    border-radius: 4px;
+    background: transparent;
+    outline: none; cursor: pointer;
+    position: relative; flex-shrink: 0;
+    transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.tk-checkbox:checked {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 6px var(--accent-glow);
+}
+.tk-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    width: 4px; height: 7px;
+    border: solid white; border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    top: 1px; left: 4px;
+}
+
+/* ── Rings ───────────────────────────────── */
+.ring-label    { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-top: 4px; }
+.ring-sublabel { font-size: 8px; color: var(--text-faint); }
+
+/* ── Reflection textarea ─────────────────── */
+#tkReflection {
+    color: var(--text-secondary);
+    background: transparent;
+}
+#tkReflection::placeholder { color: var(--text-faint); }
+
+/* ── Content Editable ────────────────────── */
+[contenteditable]:empty:before {
+    content: attr(data-placeholder);
+    color: var(--text-faint);
+    pointer-events: none; display: block;
+}
+
+/* ── Productivity rate bar ───────────────── */
+#tkWeeklyRateText  { color: var(--text-rate); }
+#tkWeeklyRateBar   { background: linear-gradient(90deg, var(--accent), #22d3ee); }
+.rate-bar-track    { background: var(--bg-progress); }
+
 
 /* ── Scrollbar ─────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; height: 5px; }
