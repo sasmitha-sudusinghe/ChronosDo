@@ -90,7 +90,7 @@ body { font-family: 'Inter', sans-serif; }
 
 /* ── Day Column Cards ───────────────────────── */
 .day-col {
-    background: rgba(24,24,46,0.6);
+    background: #0f0f1e;
     border: 1px solid #2e2e52;
     border-radius: 14px;
     overflow: hidden;
@@ -121,6 +121,7 @@ body { font-family: 'Inter', sans-serif; }
     flex: 1;
     overflow-y: auto;
     padding: 8px;
+    background: #0f0f1e;
     display: flex;
     flex-direction: column;
     gap: 6px;
