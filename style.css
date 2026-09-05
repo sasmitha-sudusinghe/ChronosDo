@@ -20,28 +20,6 @@
     animation: fadeIn 0.3s ease-out forwards;
 }
 
-/* --------------------------------------
-   HABIT TRACKER (BEIGE) CHECKBOXES 
-   -------------------------------------- */
-.hb-checkbox {
-    appearance: none;
-    width: 14px;
-    height: 14px;
-    border: 1.5px solid #7a7065;
-    border-radius: 50%; /* Circle */
-    background-color: transparent;
-    outline: none;
-    cursor: pointer;
-    position: relative;
-    transition: all 0.2s ease-in-out;
-    margin: 0 auto;
-    display: block;
-}
-
-.hb-checkbox:checked {
-    background-color: #4a433d;
-    border-color: #4a433d;
-}
 
 /* --------------------------------------
    TASK TRACKER (GREEN) CHECKBOXES 
