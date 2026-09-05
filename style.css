@@ -344,11 +344,6 @@ body {
 .rate-bar-track    { background: var(--bg-progress); }
 
 
-/* ── Scrollbar ─────────────────────────────── */
-::-webkit-scrollbar { width: 5px; height: 5px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #2e2e52; border-radius: 999px; }
-::-webkit-scrollbar-thumb:hover { background: #7c6aff55; }
 
 /* ── Animations ────────────────────────────── */
 @keyframes fadeIn {
